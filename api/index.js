@@ -8,6 +8,10 @@ require('dotenv').config();
 
 // MODULES
 const {initDatabase} = require('./database');
+require('./modules/shifts/models/Shift-Participant');
+
+// ROUTES
+const participantRoutes = require('./modules/participant/routes/participant-routes');
 
 // INIT DATABASE
 (async () => await initDatabase())();
@@ -17,8 +21,7 @@ app.use(helmet());
 app.use(express.json());
 
 // INIT ROUTES
-//app.use('/api/auth', loginRoutes);
-
+app.use('/api/participants', participantRoutes);
 
 // INIT SERVER
 const PORT = process.env.PORT || 5000;
