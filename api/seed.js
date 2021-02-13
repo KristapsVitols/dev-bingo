@@ -3,6 +3,8 @@ const mongoose = require('mongoose');
 
 const {initDatabase} = require('./database');
 const Participant = require('./modules/participant/models/Participant');
+const Shift = require('./modules/shift/models/Shift');
+const ShiftSpot = require('./modules/shift/models/Shift-Spot');
 
 const dropDatabase = async () => {
     console.log('Dropping database...');
@@ -33,11 +35,72 @@ const addParticipants = async () => {
     console.log('Participants added...');
 };
 
+const addShift = async () => {
+    console.log('Adding shift...');
+
+    const shift = new Shift();
+    shift.name = 'February shift';
+
+    await shift.save();
+
+    // create spots
+    const spots = [
+        {
+            type: 'morning',
+            date: new Date('2021-02-15'),
+            shift: shift._id,
+        },
+        {
+            type: 'evening',
+            date: new Date('2021-02-16'),
+            shift: shift._id,
+        },
+        {
+            type: 'morning',
+            date: new Date('2021-02-17'),
+            shift: shift._id,
+        },
+        {
+            type: 'evening',
+            date: new Date('2021-02-18'),
+            shift: shift._id,
+        },
+        {
+            type: 'morning',
+            date: new Date('2021-02-19'),
+            shift: shift._id,
+        },
+    ];
+
+    await ShiftSpot.insertMany(spots);
+
+    console.log('Shift added...');
+}
+
+const assignShifts = async () => {
+    console.log('Assigning shifts...');
+
+    let participants = await Participant.find().limit(5);
+    const shift = await Shift.findOne().populate('spots');
+
+    for (let i = 0; i < shift.spots.length; i++) {
+        var participant = participants[Math.floor(Math.random() * participants.length)];
+        shift.spots[i].participant = participant.id;
+        participants = participants.filter(p => p.id !== participant.id);
+
+        await shift.spots[i].save();
+    }
+
+    console.log('Shifts assigned...');
+}
+
 (async () => {
     await initDatabase();
     await dropDatabase();
 
     await addParticipants();
+    await addShift();
+    await assignShifts();
 
     process.exit(0);
 })();

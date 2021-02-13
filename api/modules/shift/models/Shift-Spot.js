@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 
-const shiftParticipantSchema = new mongoose.Schema(
+const shiftSpotSchema = new mongoose.Schema(
     {
         // morning / evening
         type: {
@@ -11,15 +11,14 @@ const shiftParticipantSchema = new mongoose.Schema(
             type: Date,
             required: true,
         },
-        participant: {
-            type: mongoose.Schema.ObjectId,
-            ref: 'Participant',
-            required: true,
-        },
         shift: {
             type: mongoose.Schema.ObjectId,
             ref: 'Shift',
             required: true,
+        },
+        participant: {
+            type: mongoose.Schema.ObjectId,
+            ref: 'Participant',
         },
     },
     {
@@ -29,6 +28,6 @@ const shiftParticipantSchema = new mongoose.Schema(
     }
 );
 
-const ShiftParticipant = mongoose.model('ShiftParticipant', shiftParticipantSchema);
+const ShiftSpot = mongoose.model('ShiftSpot', shiftSpotSchema);
 
-module.exports = ShiftParticipant;
+module.exports = ShiftSpot;

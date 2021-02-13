@@ -2,12 +2,8 @@ const mongoose = require('mongoose');
 
 const shiftSchema = new mongoose.Schema(
     {
-        date: {
-            type: Date,
-            required: true,
-        },
-        spots: {
-            type: Array,
+        name: {
+            type: String,
             required: true,
         },
     },
@@ -17,6 +13,12 @@ const shiftSchema = new mongoose.Schema(
         toObject: {virtuals: true}
     }
 );
+
+shiftSchema.virtual('spots', {
+    ref: 'ShiftSpot',
+    localField: '_id',
+    foreignField: 'shift',
+});
 
 const Shift = mongoose.model('Shift', shiftSchema);
 

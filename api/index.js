@@ -8,7 +8,7 @@ require('dotenv').config();
 
 // MODULES
 const {initDatabase} = require('./database');
-require('./modules/shifts/models/Shift-Participant');
+require('./modules/shift/models/Shift-Spot');
 
 // ROUTES
 const participantRoutes = require('./modules/participant/routes/participant-routes');

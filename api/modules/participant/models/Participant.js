@@ -15,7 +15,7 @@ const participantSchema = new mongoose.Schema(
 );
 
 participantSchema.virtual('shifts', {
-    ref: 'ShiftParticipant',
+    ref: 'ShiftSpot',
     localField: '_id',
     foreignField: 'participant',
 });
