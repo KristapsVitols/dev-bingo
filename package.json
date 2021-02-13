@@ -1,0 +1,18 @@
+{
+  "name": "dev-bingo",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "ssl": "cd ./certs && create-ssl-certificate --hostname dev-bingo --domain local"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "chalk": "^4.1.0",
+    "create-ssl-certificate": "^4.0.0",
+    "node-ssh": "^11.1.1"
+  },
+  "devDependencies": {}
+}

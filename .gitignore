@@ -1,0 +1,8 @@
+.idea
+certs
+node_modules
+api/node_modules
+api/.env
+client/node_modules
+client/dist
+init-letsencrypt.sh
