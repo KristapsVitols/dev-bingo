@@ -1,3 +1,3 @@
 const Shift = require('../models/Shift');
 
-exports.getShifts = () => Shift.find();
+exports.getLatestShift = () => Shift.findOne().sort({_id: -1});

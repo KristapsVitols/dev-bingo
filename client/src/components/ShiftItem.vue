@@ -1,7 +1,10 @@
 <template>
     <div>
         <h4 class="mb-4">Current shift - {{ shift.name }}</h4>
-        <div class="row">
+        <h5 v-if="!shift.spots.length" class="text-center mt-4">
+            No one assigned yet.
+        </h5>
+        <div v-else class="row">
             <b-carousel
                 id="carousel-1"
                 v-model="slide"
@@ -20,8 +23,10 @@
                         :key="spot.id"
                         :caption="spot.participant.name"
                         :text="getFormattedDate(spot.date)"
-                        img-src="img/nice-image.jpg"
-                    ></b-carousel-slide>
+                        img-src="img/nice-image.jpg">
+                        <b-icon-sun v-if="spot.type === 'morning'" variant="warning"/>
+                        <b-icon-moon v-else variant="primary"/>
+                    </b-carousel-slide>
 <!--                </div>-->
             </b-carousel>
 <!--                <div class="card p-3 mb-3" :class="getBgClass(spot)">-->
@@ -40,7 +45,7 @@
     </div>
 </template>
 <script>
-import moment from 'moment-timezone';
+import moment from 'moment';
 
 export default {
     name: 'ShiftItem',

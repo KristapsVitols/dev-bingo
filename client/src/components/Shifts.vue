@@ -18,7 +18,7 @@ export default {
     methods: {
         async getShifts() {
             const re = await fetch('/api/shifts');
-            const {shifts: [shift]} = await re.json();
+            const {shift} = await re.json();
 
             this.shift = shift;
 

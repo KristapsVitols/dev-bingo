@@ -39,7 +39,7 @@ const addShift = async () => {
     console.log('Adding shift...');
 
     const shift = new Shift();
-    shift.name = 'February ( 15th - 19th )';
+    shift.name = 'April ( 19th - 23th )';
 
     await shift.save();
 
@@ -47,27 +47,27 @@ const addShift = async () => {
     const spots = [
         {
             type: 'morning',
-            date: new Date('2021-02-15'),
+            date: new Date('2021-04-19'),
             shift: shift._id,
         },
         {
             type: 'evening',
-            date: new Date('2021-02-16'),
+            date: new Date('2021-04-20'),
             shift: shift._id,
         },
         {
             type: 'morning',
-            date: new Date('2021-02-17'),
+            date: new Date('2021-04-21'),
             shift: shift._id,
         },
         {
             type: 'evening',
-            date: new Date('2021-02-18'),
+            date: new Date('2021-04-22'),
             shift: shift._id,
         },
         {
             type: 'morning',
-            date: new Date('2021-02-19'),
+            date: new Date('2021-04-23'),
             shift: shift._id,
         },
     ];

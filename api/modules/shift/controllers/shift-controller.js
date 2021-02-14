@@ -7,9 +7,9 @@ const shiftService = require('../services/shift-service');
  */
 exports.getShifts = async (req, res) => {
     try {
-        const shifts = await shiftService.getShifts();
+        const shift = await shiftService.getLatestShift();
 
-        return res.json({success: true, shifts});
+        return res.json({success: true, shift});
     } catch (err) {
         return res.status(500).json({success: false, error: err.message});
     }

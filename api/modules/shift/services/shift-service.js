@@ -1,6 +1,6 @@
 const shiftRepo = require('../repositories/shift-repository');
 
-exports.getShifts = async () => shiftRepo.getShifts().populate({
+exports.getLatestShift = async () => shiftRepo.getLatestShift().populate({
     path: 'spots',
     populate: {
         path: 'participant'

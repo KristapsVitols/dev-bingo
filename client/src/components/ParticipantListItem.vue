@@ -14,10 +14,10 @@
             <b-modal @close="showModal = false" v-model="showModal">
                 <template v-if="participant.shifts.length">
                     <div v-for="shift in participant.shifts" :key="shift.id">
-                        <p>Date: {{ shift.date }}</p>
-                        <p>Type: {{ shift.type }}</p>
+                        <p>{{ getFormattedDate(shift.date) }}</p>
+                        <p>{{ shift.type }} shift</p>
+                        <hr/>
                     </div>
-                    <hr/>
                 </template>
                 <template v-else>No shifts so far</template>
             </b-modal>
@@ -25,6 +25,8 @@
     </div>
 </template>
 <script>
+import moment from 'moment';
+
 export default {
     name: 'ParticipantListItem',
     props: {
@@ -47,6 +49,9 @@ export default {
     methods: {
         viewHistory() {
             this.showModal = true;
+        },
+        getFormattedDate(date) {
+            return moment(date).format('dddd, MMMM Do');
         },
     }
 }
