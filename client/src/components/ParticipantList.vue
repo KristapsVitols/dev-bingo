@@ -1,7 +1,9 @@
 <template>
     <div class="mt-4">
-        <h4>Participant List</h4>
-        <ParticipantListItem v-for="participant in participants" :participant="participant" :key="participant.name"/>
+        <h4 class="mb-3">Participant List</h4>
+        <div class="row">
+            <ParticipantListItem v-for="participant in participants" :participant="participant" :key="participant.name"/>
+        </div>
     </div>
 </template>
 <script>

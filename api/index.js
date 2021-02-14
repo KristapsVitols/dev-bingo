@@ -12,6 +12,7 @@ require('./modules/shift/models/Shift-Spot');
 
 // ROUTES
 const participantRoutes = require('./modules/participant/routes/participant-routes');
+const shiftRoutes = require('./modules/shift/routes/shift-routes');
 
 // INIT DATABASE
 (async () => await initDatabase())();
@@ -22,6 +23,7 @@ app.use(express.json());
 
 // INIT ROUTES
 app.use('/api/participants', participantRoutes);
+app.use('/api/shifts', shiftRoutes);
 
 // INIT SERVER
 const PORT = process.env.PORT || 5000;

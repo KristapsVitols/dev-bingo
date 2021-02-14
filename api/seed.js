@@ -39,7 +39,7 @@ const addShift = async () => {
     console.log('Adding shift...');
 
     const shift = new Shift();
-    shift.name = 'February shift';
+    shift.name = 'February ( 15th - 19th )';
 
     await shift.save();
 
